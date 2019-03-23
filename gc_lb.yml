@@ -1,0 +1,13 @@
+- name: Playbook to create gce load balancing instance
+  hosts: all
+  sudo: true
+
+  tasks:
+    - local_action:
+        module: gce_lb
+        name: testlb
+        region: us-central1
+        members: ['us-central1-c/host-1','us-central1-c/host-2']
+        httphealthcheck_name: hc
+        httphealthcheck_port: 443
+        httphealthcheck_path: "/"
